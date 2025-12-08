@@ -185,8 +185,3 @@ Frontend Developer specializing in modern web technologies.
 Passionate about clean code, user experience, and interactive applications.
 
 - **GitHub:** [@JeanAmenyaglo](https://github.com/JeanAmenyaglo)
-- **Portfolio:** *[Your Portfolio Link Here]*
-- **LinkedIn:** *[Your LinkedIn Here]*
-
----
-*This project was created as a demonstration of modern frontend development skills using native browser technologies. All game data is provided by the Hyrule Compendium API and is property of Nintendo.*
