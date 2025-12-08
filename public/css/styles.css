@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1024px;
+  margin: auto;
+}
+
+#category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: auto;
+}
+
+/* Style for the entries grid on category page */
+#entries-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Basic spacing for headers */
+h1, h2 {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+/* Adding some padding to the body for better spacing */
+body {
+  padding: 1rem;
+}
+
+/* Style for the h2 on category page */
+h2 {
+  color: #2c3e50;
+  margin-top: 2rem;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  #category-buttons {
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+  }
+  
+  #entries-list {
+    grid-template-columns: 1fr;
+  }
+}
