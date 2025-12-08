@@ -1,0 +1,27 @@
+name: Deploy to Netlify        # Workflow name (shows in GitHub UI)
+
+on:                            # When to trigger this workflow
+  push:                        # On git push
+    branches: [main]           # Only for the "main" branch
+
+jobs:                          # Define jobs to run
+  deploy:                      # Job name: "deploy"
+    runs-on: ubuntu-latest     # Run on Ubuntu Linux (GitHub's server)
+    
+    steps:                     # List of steps in this job
+    
+    # Step 1: Get your code
+    - name: Checkout code
+      uses: actions/checkout@v3  # Uses GitHub's "checkout" action
+      
+    # Step 2: Deploy to Netlify
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2.0  # Uses Netlify action
+      with:                              # Parameters for the action
+        publish-dir: './public'          # Folder to deploy
+        production-branch: main          # Netlify production branch
+        github-token: ${{ secrets.GITHUB_TOKEN }}  # Auto-generated token
+        deploy-message: "Deployed via GitHub Actions"
+      env:                              # Environment variables
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
