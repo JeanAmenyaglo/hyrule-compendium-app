@@ -1,187 +1,210 @@
-# 🗺️ Hyrule Compendium Explorer
+# 🗺️ Hyrule Compendium Explorer  
+A beautifully designed web application that lets you explore the vast world of Hyrule from *The Legend of Zelda: Breath of the Wild*. Built with modern Web Components and deployed using a production‑grade AWS pipeline, this app delivers fast, global performance with a clean, modern architecture.
 
-A beautifully designed web application that lets you explore the vast world of Hyrule from **The Legend of Zelda: Breath of the Wild**. Built with modern Web Components, this app provides an interactive catalog of creatures, monsters, materials, equipment, and treasures from the game.
+---
 
-![Hyrule Compendium Screenshot](https://img.shields.io/badge/Live-Demo-brightgreen) ![Web Components](https://img.shields.io/badge/Web-Components-blue) ![Vanilla JS](https://img.shields.io/badge/100%25-Vanilla_JS-yellow)
+# 🌐 Live Demo  
+**CloudFront CDN:**  
+https://d3r0rfgnrk6zku.cloudfront.net
 
-## ✨ Live Demo
-**[🌐 Open the Live Application](https://assignment4byjean.netlify.app/)**
+---
 
-## 🎮 Features
+# 🏷️ Badges  
+These give your repo instant credibility:
 
-### 🏗️ Modern Architecture
-- **Native Web Components** - No frameworks, just pure browser technology
-- **Shadow DOM** - Encapsulated styles and markup
-- **Slots & Properties** - Reusable, configurable components
-- **ES6 Modules** - Clean, modular JavaScript
+![Static Badge](https://img.shields.io/badge/Web_Components-HTML%2FJS-blue)  
+![Static Badge](https://img.shields.io/badge/Deployed_on-AWS_CloudFront-orange)  
+![Static Badge](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-brightgreen)  
+![Static Badge](https://img.shields.io/badge/API-Hyrule_Compendium-purple)
 
-### 📱 User Experience
-- **Responsive Design** - Beautiful on desktop, tablet, and mobile
-- **Interactive Cards** - Expandable entries with detailed information
-- **Fast Navigation** - Instant category switching
-- **Live API Data** - Real-time information from the Hyrule Compendium
+---
 
-### 🔧 Technical Excellence
-- **No Build Step** - Runs directly in the browser
-- **Clean Code** - Well-structured, commented, and maintainable
-- **API Integration** - Async/await with error handling
-- **CSS Custom Properties** - Themeable design system
+# 🎮 Features
 
-## 📸 Preview
+## 🏗️ Modern Architecture  
+- Native Web Components (no frameworks)  
+- Shadow DOM encapsulation  
+- ES6 modules  
+- Reusable UI components  
+
+## 📱 User Experience  
+- Responsive design  
+- Interactive cards  
+- Fast category switching  
+- Live API data  
+
+## 🔧 Technical Excellence  
+- No build step  
+- Clean, modular code  
+- Async/await API integration  
+- CSS custom properties  
+
+---
+
+# 🏛️ Deployment Architecture (AWS)
+
+Your project now runs on a **secure, automated, globally distributed pipeline**:
 
 ```
-┌─────────────────────────────────────┐
-│  🏠 HYRULE COMPENDIUM               │
-│                                     │
-│  Welcome to the Hyrule Compendium!  │
-│  Select a category to explore:      │
-│                                     │
-│  [🐾 Creatures] [👹 Monsters]       │
-│  [🌿 Materials] [⚔️ Equipment]      │
-│  [💎 Treasure]                      │
-│                                     │
-│  → Click any category to begin!     │
-└─────────────────────────────────────┘
+┌──────────────────────────────┐
+│          GitHub              │
+│  (Push to main branch)       │
+└──────────────┬───────────────┘
+               │ GitHub Actions
+               ▼
+┌──────────────────────────────┐
+│   AWS S3 (Private Bucket)    │
+│  - Stores static files       │
+│  - Block Public Access ON    │
+│  - Access via OAC only       │
+└──────────────┬───────────────┘
+               │
+               ▼
+┌──────────────────────────────┐
+│     AWS CloudFront CDN       │
+│  - Global edge caching       │
+│  - HTTPS by default          │
+│  - Default root: index.html  │
+│  - Cache invalidation on CI  │
+└──────────────┬───────────────┘
+               │
+               ▼
+        🌍 End Users
 ```
 
-## 🛠️ Technology Stack
+### ✅ Key AWS Components  
+- **S3 (private)** — stores your site securely  
+- **CloudFront** — global CDN distribution  
+- **OAC** — secure origin access  
+- **GitHub Actions** — automated deployments  
 
-| Technology | Purpose |
-|------------|---------|
-| **HTML5** | Semantic markup & Web Components |
-| **CSS3** | Responsive design with Flexbox/Grid |
-| **Vanilla JavaScript** | ES6+ modules, async/await |
-| **Web Components** | Custom Elements, Shadow DOM, Templates |
-| **Hyrule Compendium API** | Live game data |
-| **Netlify** | Deployment & hosting |
+---
 
-## 🚀 Quick Start
+# 🚀 CI/CD Pipeline (GitHub Actions)
 
-### Run Locally (No Installation Needed!)
-```bash
-# 1. Clone the repository
-git clone https://github.com/JeanAmenyaglo/hyrule-compendium.git
+Every push to `main` triggers:
 
-# 2. Navigate to the project
-cd hyrule-compendium
+1. Checkout code  
+2. Configure AWS credentials  
+3. Sync `public/` to S3  
+4. Invalidate CloudFront cache  
+5. Deploy globally  
 
-# 3. Open in your browser
-# On Mac:
-open public/index.html
-
-# On Windows:
-start public/index.html
-
-# On Linux:
-xdg-open public/index.html
+Workflow file:  
+```
+.github/workflows/deploy-aws.yml
 ```
 
-### Deploy Your Own Copy
-1. **Fork** this repository on GitHub
-2. **Sign up** for a free [Netlify](https://netlify.com) account
-3. **Click** "New site from Git"
-4. **Select** your forked repository
-5. **Set** publish directory to `public/`
-6. **Click** "Deploy site" - done in 60 seconds!
+Secrets required:
 
-## 📁 Project Structure
+| Secret | Purpose |
+|--------|---------|
+| `AWS_ACCESS_KEY_ID` | IAM access key |
+| `AWS_SECRET_ACCESS_KEY` | IAM secret |
+| `AWS_REGION` | e.g., `ca-central-1` |
+| `S3_BUCKET` | e.g., `jean-static-site1` |
+| `CLOUDFRONT_DISTRIBUTION_ID` | e.g., `E3SHAN1ERYUWEH` |
+
+---
+
+# 📁 Project Structure
+
 ```
 hyrule-compendium/
-├── public/                    # Application files
-│   ├── index.html            # Home page with category selection
-│   ├── category.html         # Category detail page
+├── public/
+│   ├── index.html
+│   ├── category.html
 │   ├── css/
-│   │   └── styles.css       # Global styles & responsive design
 │   └── js/
-│       ├── main.js          # Home page initialization
-│       ├── category.js      # API integration & rendering
-│       └── components/      # Custom Web Components
-│           ├── app-header.js    # Navigation header
-│           ├── app-button.js    # Reusable button/link
-│           └── entry-card.js    # Interactive entry display
-├── .gitignore               # Git configuration
-└── README.md               # This file
+│       ├── main.js
+│       ├── category.js
+│       └── components/
+│           ├── app-header.js
+│           ├── app-button.js
+│           └── entry-card.js
+├── .github/workflows/
+│   ├── deploy.yml            # Netlify (legacy)
+│   └── deploy-aws.yml        # AWS S3 + CloudFront CI/CD
+└── README.md
 ```
 
-## ⚡ Web Components Deep Dive
+---
 
-### `<app-header>`
-A navigation header with customizable branding.
-```html
-<app-header>
-  <span slot="home-text">Hyrule Compendium</span>
-</app-header>
+# 🔗 API Integration
+
+Uses the official Hyrule Compendium API:
+
+```
+https://botw-compendium.herokuapp.com/api/v3/compendium/category/{category}
 ```
 
-### `<app-button>`
-Smart button that becomes a link when `href` is provided.
-```html
-<app-button href="category.html?category=monsters">
-  <span slot="label">👹 Monsters</span>
-</app-button>
-```
+Categories include:  
+creatures, monsters, materials, equipment, treasure
 
-### `<entry-card>`
-Interactive card showing Hyrule Compendium entries with expandable details.
-```javascript
-const card = document.createElement('entry-card');
-card.data = {
-  name: "Bokoblin",
-  category: "monsters",
-  description: "A common enemy found across Hyrule...",
-  image: "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/bokoblin/image",
-  common_locations: ["Hyrule Field", "West Necluda"],
-  drops: ["Bokoblin Horn", "Bokoblin Fang"]
-};
-```
+---
 
-## 🔗 API Integration
-This application uses the official [Hyrule Compendium API](https://gadhagod.github.io/Hyrule-Compendium-API/#/):
-- **Endpoint:** `https://botw-compendium.herokuapp.com/api/v3/compendium/category/{category}`
-- **Categories:** `creatures`, `monsters`, `materials`, `equipment`, `treasure`
-- **Data Format:** JSON with images, descriptions, locations, and drops
+# 🎯 Learning Outcomes
 
-## 🎯 Learning Outcomes
-This project demonstrates mastery of:
+### ✅ Frontend  
+- Web Components  
+- Shadow DOM  
+- State management  
+- API communication  
 
-### Frontend Development
-- **Component Architecture** - Building reusable UI elements
-- **State Management** - Internal component state with getters/setters
-- **API Communication** - Fetching and rendering dynamic data
-- **Event Handling** - User interactions and DOM updates
+### ✅ Modern Web Standards  
+- ES6 modules  
+- CSS custom properties  
+- Semantic HTML  
 
-### Modern Web Standards
-- **Web Components** - The future of web development
-- **ES6+ Features** - Classes, modules, private fields
-- **CSS Custom Properties** - Design system foundations
-- **Shadow DOM** - Style encapsulation and isolation
+### ✅ DevOps & Cloud  
+- AWS S3 hosting  
+- CloudFront CDN  
+- OAC permissions  
+- CI/CD pipelines  
+- Cache invalidation  
 
-### Professional Practices
-- **Code Organization** - Clean separation of concerns
-- **Error Handling** - Graceful API failure management
-- **Responsive Design** - Mobile-first approach
-- **Deployment** - CI/CD pipeline setup
+---
 
-## 📖 How to Use
-1. **Visit** the [live demo](https://assignment4byjean.netlify.app/)
-2. **Choose** a category (Creatures, Monsters, Materials, Equipment, or Treasure)
-3. **Browse** through the entries
-4. **Click** "Show Details" on any card to see more information
-5. **Explore** different categories to discover all Hyrule has to offer!
+# 📖 How to Use
 
-## 🤝 Contributing
-This is a learning project, but suggestions are welcome! If you have ideas for improvement:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+1. Visit the live demo  
+2. Choose a category  
+3. Browse entries  
+4. Expand cards for details  
+5. Explore all categories  
 
-## 📄 License
-This project is open source and available under the **MIT License**. Feel free to use it as a learning resource, portfolio piece, or foundation for your own projects.
+---
 
-## 👨‍💻 About the Developer
+# 🤝 Collaborators  
+To add collaborators:
+
+1. Go to your repo  
+2. Settings → Collaborators & Teams  
+3. Add GitHub username  
+4. They accept the invite  
+
+---
+
+# 🧭 Roadmap (What’s Next)
+
+✅ Add API Gateway behind CloudFront  
+✅ Add custom domain + HTTPS  
+⬜ Add CloudFront Functions for redirects  
+⬜ Add loading skeletons  
+⬜ Add search functionality  
+⬜ Add favorites/bookmarks  
+⬜ Add dark mode  
+
+---
+
+# 📄 License  
+MIT License — free to use, modify, and learn from.
+
+---
+
+# 👨‍💻 About the Developer  
 **Jean Amenyaglo**  
 Frontend Developer specializing in modern web technologies.  
 Passionate about clean code, user experience, and interactive applications.
 
-- **GitHub:** [@JeanAmenyaglo](https://github.com/JeanAmenyaglo)
+GitHub: **@JeanAmenyaglo**
