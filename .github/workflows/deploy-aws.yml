@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
 
+    # Please refer to my comments in the earlier project. Good luck
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
